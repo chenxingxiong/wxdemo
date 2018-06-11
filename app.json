@@ -5,7 +5,7 @@
   ],
   "window":{
     "backgroundTextStyle":"light",
-    "navigationBarBackgroundColor": "#cbeefd",
+    "navigationBarBackgroundColor": "#fff",
     "navigationBarTitleText": "天气小应用",
     "navigationBarTextStyle":"black"
   }
