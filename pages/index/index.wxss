@@ -42,3 +42,45 @@
   height: 100%;
   z-index: -1;
 }
+.time-tips{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 40rpx;
+  margin-bottom: 36rpx;
+}
+.time-icon{
+  margin-right: 10rpx;
+  width: 36rpx;
+  height: 28rpx;
+}
+.time-text{
+  font-size: 30rpx;
+  line-height: 42rpx;
+  opacity: 0.5;
+}
+.cast-list{
+  display: flex;
+}
+.cast-item{
+  display: flex;
+  flex-direction: column;
+  width: 120rpx;
+  flex-shrink: 0;
+  align-items: center;
+}
+.item-time{
+  font-size: 30rpx;
+  line-height: 42rpx;
+
+}
+.item-weather{
+  margin-top: 36rpx;
+  width: 60rpx;
+  height: 60rpx;
+}
+.item-temp{
+  margin-top: 30rpx;
+  font-size: 40rpx;
+  line-height: 56rpx;
+}

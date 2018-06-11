@@ -1,5 +1,20 @@
 <view class='weather-wrapper'>
       <view class='temp'>{{nowTemp}}°</view>
       <view class='weather'>{{nowWeather}}</view>
-      <image class='wearher-bg' src='{{nowWeatherBgimg}}' mode='scaleToFill'></image>
+      <image class='wearher-bg' src='{{nowWeatherBgimg}}' 
+      mode='scaleToFill'></image>
 </view>
+ <view class='time-tips'>
+      <image class='time-icon' src='/img/time-icon.png' mode='sacleToFill'></image>
+      <view class='time-text'>未来24小时天气预测</view>
+      </view>
+
+      <scroll-view scroll-x>
+     <view class='cast-list'>
+      <view class='cast-item' wx:for="{{castlist}}">
+      <view class='item-time'>{{item.time}}</view>
+      <image class='item-weather' src='{{item.iconpath}}'></image>
+      <view class='item-temp'>{{item.temp}}</view>
+      </view>
+      </view>
+      </scroll-view>
