@@ -25,34 +25,47 @@ Page({
     nowWeather:"",
     nowWeatherBgimg:''
   },
+
+  onPullDownRefresh:function(){
+    this.getNowdata(()=>{
+      wx.stopPullDownRefresh()
+    });
+
+  },
   onLoad: function () {
     console.log("hello world");
+    this.getNowdata();
+
+  },
+
+  getNowdata(callback) {
     wx.request({
       url: 'https://test-miniprogram.com/api/weather/now',
-      data:{city:"上海市"},
-     // success:function(res){
+      data: { city: "上海市" },
+      // success:function(res){
       //  console.log(res);
-    //  }
-    success:res=>{
-      console.log(res);
-      let result=res.data.result;
-      let nowTemp=result.now.temp;
-      let weather=result.now.weather;
-      this.setData({
-        nowTemp:nowTemp,
-        nowWeather: weatherMap[weather],
-        nowWeatherBgimg: '/img/' + weather+'-bg.png'
-      })
-      wx.setNavigationBarColor({
-        frontColor: '#000000',
-        backgroundColor: weatherColorMap[weather],
-      })
-       
-    }
-      
-      
-    })
+      //  }
+      success: res => {
+        //console.log(res);
+        let result = res.data.result;
+        let nowTemp = result.now.temp;
+        let weather = result.now.weather;
+        this.setData({
+          nowTemp: nowTemp,
+          nowWeather: weatherMap[weather],
+          nowWeatherBgimg: '/img/' + weather + '-bg.png'
+        })
+        wx.setNavigationBarColor({
+          frontColor: '#000000',
+          backgroundColor: weatherColorMap[weather],
+        })
+        
+      },
+      complete: () => {
+        callback && callback();
+      }
 
-  }     
+    })
+  },    
   
 })
