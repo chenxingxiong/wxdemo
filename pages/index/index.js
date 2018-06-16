@@ -24,7 +24,9 @@ Page({
     nowTemp:'',
     nowWeather:"",
     nowWeatherBgimg:'',
-    castlist:[]
+    castlist:[],
+    todaydate:'',
+    todaytemp:''
   },
 
   onPullDownRefresh:function(){
@@ -51,6 +53,7 @@ Page({
         let result = res.data.result;
         this.getnow(result)
         this.getmanyHours(result)
+        this.setToday(result)
       },
       complete: () => {
         callback && callback();
@@ -86,6 +89,24 @@ Page({
     casttemplist[0].time = '现在';
     this.setData({
       castlist: casttemplist
+    })
+  },
+  setToday(result){
+    let ndate=new Date();
+    this.setData({
+      todaytemp: result.today.minTemp + '°' + '- ' +  result.today.maxTemp +'°',
+      todaydate: `${ndate.getFullYear()}-${ndate.getMonth()+1}-${ndate.getDay()} 今天`,
+     // todaydate: `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()} 今天`,
+    
+    })
+    console.log(ndate.getFullYear())
+  },
+  onclickshowtoast(){
+    wx.showToast({
+       
+    })
+    wx.navigateTo({
+      url: '/pages/list/list',
     })
   }
   

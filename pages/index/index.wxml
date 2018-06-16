@@ -1,8 +1,12 @@
 <view class='weather-wrapper'>
       <view class='temp'>{{nowTemp}}°</view>
       <view class='weather'>{{nowWeather}}</view>
-      <image class='wearher-bg' src='{{nowWeatherBgimg}}' 
-      mode='scaleToFill'></image>
+      <image class='wearher-bg' src='{{nowWeatherBgimg}}' mode='scaleToFill'></image>
+      <view class='today-weather-contianer' bindtap='onclickshowtoast'>
+      <view class='day-text'>{{todaydate}}</view>
+      <view class='day-temp'>{{todaytemp}}</view>
+      <image class='arrow-icon' src='/img/arrow.png'></image>
+      </view>
 </view>
  <view class='time-tips'>
       <image class='time-icon' src='/img/time-icon.png' mode='sacleToFill'></image>

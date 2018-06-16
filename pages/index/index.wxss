@@ -84,3 +84,29 @@
   font-size: 40rpx;
   line-height: 56rpx;
 }
+
+.today-weather-contianer{
+  display: flex;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  align-items: center;
+  height: 90rpx;
+  bottom: 0;
+  position: absolute;
+  left: 40rpx;
+  right: 40rpx;
+  font-size: 30rpx;
+  line-height: 42rpx;
+  opacity: 0.5;
+}
+.day-text{
+  flex-grow: 1;
+  padding-right: 30rpx;
+  text-align: left
+}
+.day-temp{
+  padding-right: 30rpx;
+}
+.arrow-icon{
+  width: 13rpx;
+  height: 24rpx;
+}
