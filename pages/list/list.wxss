@@ -1,1 +1,26 @@
-/* pages/list/list.wxss */
+
+.list-container-view{
+  display: flex;
+  height: 150rpx;
+  align-items: center;
+  margin: 0 40rpx;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1)
+
+}
+
+.item-week{
+
+}
+.item-day{
+  
+}
+.item-temp{
+  padding-right: 60rpx;
+  flex-grow: 1；
+  
+
+}
+.item-list-icon{
+  height: 90rpx;
+  width: 90rpx
+}

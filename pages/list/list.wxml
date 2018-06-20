@@ -1,2 +1,9 @@
 <!--pages/list/list.wxml-->
-<text>pages/list/list.wxml   你好 hello world</text>
+ 
+<view class='list-container-view'  wx:for='{{[1,2,3,4,3,5,6,7,8,9]}}'>
+<view class='item-week'>星期一</view>
+<view class='item-day'>2018-6-20</view>
+<view class='item-temp'>温度</view>
+<image class='item-list-icon' src='/img/sunny-icon.png'></image>
+
+</view>
