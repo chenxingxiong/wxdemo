@@ -52,25 +52,39 @@ Page({
     qqmapsdk = new QQMapWX({
       key: 'XOXBZ-O3Y3W-55URL-RCA6E-5VFNT-QEBRA'
     });
-
-    this.getNowdata();
-
-  },
-  onShow: function () {
-   wx.getSetting({
-     success:res=>{
-       let auth=res.authSetting['scope.userLocation']
-       if(auth&&this.data.locationAuthType!=AUTHORIZED){
+    wx.getSetting({
+      success:res=>{
+        let auth = res.authSetting['scope.userLocation']
          this.setData({
-           locationTipsText: AUTHORIZED_TIPS,
-           locationAuthType: AUTHORIZED
-
+           locationAuthType:auth?AUTHORIZED:(auth==false)?UNAUTHORIZED:UNPROMPTED,
+           locationTipsText:auth?AUTHORIZED_TIPS:(auth==false)?UNAUTHORIZED_TIPS:UNPROMPTED_TIPS
          })
-         this.getTapLocation()
-       }
-     }
-   })
+
+         if(auth){
+           this.getCityAndWeather()
+         }else{
+           this.getNowdata();
+         }
+      }
+    })
+
   },
+  // onShow: function () {
+  //   //获取地理位置权限
+  //  wx.getSetting({
+  //    success:res=>{
+  //      let auth=res.authSetting['scope.userLocation']
+  //      if(auth&&this.data.locationAuthType!=AUTHORIZED){
+  //        this.setData({
+  //          locationTipsText: AUTHORIZED_TIPS,
+  //          locationAuthType: AUTHORIZED
+
+  //        })
+  //        this.getTapLocation()
+  //      }
+  //    }
+  //  })
+  // },
 
   getNowdata(callback) {
     wx.request({
@@ -142,7 +156,7 @@ Page({
     })
   },
 
-    getlo(){
+    getCityAndWeather(){
       var that = this;
       wx.getLocation({
         success: function (res) {
@@ -181,10 +195,17 @@ Page({
   //获取位置信息
   getTapLocation() {
     if (this.data.locationAuthType == UNAUTHORIZED) {
-      wx.openSetting()
+     wx.openSetting({
+       success:res=>{
+         let auth = res.authSetting['scope.userLocation']
+         if(auth){
+           this.getCityAndWeather()
+         }
+       }
+     })
     }
     else {
-      this.getlo()
+      this.getCityAndWeather()
     }
   }
 
