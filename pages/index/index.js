@@ -1,4 +1,5 @@
 //index.js
+//XOXBZ-O3Y3W-55URL-RCA6E-5VFNT-QEBRA  位置服务的key
 //获取应用实例
 const app = getApp()
 const weatherMap={
@@ -18,7 +19,8 @@ const weatherColorMap={
   'heavyrain': '#c5ccd0',
   'snow': '#aae1fc'
 }
-
+const QQMapWX = require('../../libs/qqmap-wx-jssdk.js');
+var qqmapsdk='';
 Page({
   data:{
     nowTemp:'',
@@ -26,7 +28,10 @@ Page({
     nowWeatherBgimg:'',
     castlist:[],
     todaydate:'',
-    todaytemp:''
+    todaytemp:'',
+    city:'广州市',
+    locationTipsText:'点击获取当前位置'
+
   },
 
   onPullDownRefresh:function(){
@@ -36,7 +41,10 @@ Page({
 
   },
   onLoad: function () {
-    console.log("hello world");
+      qqmapsdk = new QQMapWX({
+      key: 'XOXBZ-O3Y3W-55URL-RCA6E-5VFNT-QEBRA'
+    });
+
     this.getNowdata();
 
   },
@@ -44,7 +52,7 @@ Page({
   getNowdata(callback) {
     wx.request({
       url: 'https://test-miniprogram.com/api/weather/now',
-      data: { city: "上海市" },
+      data: { city: this.data.city },
       // success:function(res){
       //  console.log(res);
       //  }
@@ -105,9 +113,36 @@ Page({
     wx.showToast({
        
     })
+    //跳转到list列表页面
     wx.navigateTo({
-      url: '/pages/list/list',
+      url: '/pages/list/list?city='+this.data.city,
     })
+  },
+
+//获取位置信息
+  getTapLocation(){
+    var that=this;
+   wx.getLocation({
+     success: function(res) {
+       console.log(res.latitude,res.longitude)
+       qqmapsdk.reverseGeocoder({
+         location: {
+           latitude: res.latitude,
+           longitude: res.longitude
+         },
+         success: function (res) {
+          let city= res.result.address_component.city;
+          that.setData({
+            city:city,
+            locationTipsText:''
+          })
+          that.getNowdata();
+         }
+         
+       });
+       
+     },
+   })
   }
   
 })

@@ -1,8 +1,10 @@
 <!--pages/list/list.wxml-->
  
 <view class='list-container-view'  wx:for='{{weekWeather}}'>
+<view>
 <view class='item-week'>{{item.day}}</view>
 <view class='item-day'>{{item.date}}</view>
+</view>
 <view class='item-temp'>{{item.temp}}</view>
 <image class='item-list-icon' src='/img/sunny-icon.png'></image>
 

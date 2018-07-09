@@ -31,8 +31,35 @@
 }
 .weather-wrapper{
   position: relative;
-  padding-top: 174rpx;
+  padding-top: 20rpx;
   padding-bottom: 250rpx;
+}
+.location-wrapper{
+  margin-bottom: 60rpx;
+  font-size: 30rpx;
+  line-height: 42rpx;
+  color: rgba(0, 0, 0, 0.5)
+
+}
+.location{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.location-icon{
+ width: 21rpx;
+ height: 30rpx;
+
+}
+.location-text{
+ line-height: 42rpx;
+ text-align: center;
+}
+.location-tips{
+  margin-top: 10rpx;
+  height: 42rpx;
+  text-align: center
+
 }
 .wearher-bg{
   position: absolute;

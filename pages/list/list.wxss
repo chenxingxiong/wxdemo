@@ -9,16 +9,23 @@
 }
 
 .item-week{
+  opacity: 0.8;
+  font-size: 40rpx;
+  line-height: 56rpx;
 
 }
 .item-day{
-  
+  opacity: 0.8;
+  font-size: 25rpx;
+  line-height: 35rpx
 }
 .item-temp{
   padding-right: 60rpx;
-  flex-grow: 1；
-  
-
+  flex-grow: 1;
+  opacity: 0.8;
+  font-size: 40rpx;
+  line-height: 56rpx;
+  text-align: center;
 }
 .item-list-icon{
   height: 90rpx;

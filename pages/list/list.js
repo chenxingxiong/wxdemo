@@ -7,40 +7,47 @@ Page({
    * 页面的初始数据
    */
   data: {
-    weekWeather:[]
+    weekWeather:[],
+    city:'广州市'
+    
   
+  },
+
+  /**
+   * 页面相关事件处理函数--监听用户下拉动作
+   */
+  onPullDownRefresh: function () {
+    this.getWeekWeather(() => {
+      wx.stopPullDownRefresh()
+    })
+
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    this.data.city=options.city;
     this.getWeekWeather()
   },
 
    
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-  
-  },
-
   
 
-   
-
-  getWeekWeather(){
+  getWeekWeather(callback){
    wx.request({
      url: 'https://test-miniprogram.com/api/weather/future',
      data:{
-       city:'上海',
+       city:this.data.city,
        time:new Date().getTime()
      },
      success:res=>{
        let result=res.data.result;
-       console.log(result);
        this.setWeekWeather(result)
+     },
+
+     complete:()=>{
+       callback && callback()
      }
    })
   },
@@ -53,7 +60,7 @@ Page({
       weekWeather.push({
         day:dayMap[date.getDay()],
         date:date.getFullYear()+'-'+`${date.getMonth()+1}`+'-'+date.getDate(),
-        temp:result[i].minTemp+"-"+result[i].maxTemp,
+        temp: result[i].minTemp + "°-" + result[i].maxTemp + '°',
         iconPath:'/img/'+result[i].weather+'-icon.png'
       })
 
